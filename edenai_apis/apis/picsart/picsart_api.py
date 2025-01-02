@@ -55,7 +55,7 @@ class PicsartApi(ProviderInterface, ImageInterface):
         else:
             raise ProviderException("No file or file_url provided")
 
-        bg_image = provider_params.pop("bg_image")
+        bg_image = provider_params.pop("bg_image", None)
         if bg_image:
             bg_image = open(bg_image, "rb")
             files["bg_image"] = bg_image

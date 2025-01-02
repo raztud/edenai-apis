@@ -1,6 +1,7 @@
 {
     "image": {
         "background_removal": {
+            "version": "v1.0.0"
         }
     }
 }
