@@ -33,27 +33,42 @@ class PicsartApi(ProviderInterface, ImageInterface):
             file_url: Optional[str] = None,
             provider_params: Optional[Dict[str, Any]] = None,
     ) -> ResponseType[BackgroundRemovalDataClass]:
+        """
+        Calls the Picsart Remove Background API.
+
+        :param file: The file path of the image you want to remove the background from
+        :param file_url: The file url of the image you want to remove the background from
+        :param provider_params: Other parameters supported by the Picsart Remove Background API.
+        """
         url = f"{self.base_image_api_url}/removebg"
 
         if provider_params is None:
             provider_params = {}
 
+        files = None
+        image_file = None
         if file and not file_url:
-            with open(file, "rb") as image_file:
-                files = {"image": image_file}
-                response = requests.post(url, files=files, data=provider_params, headers=self.headers)
+            image_file = open(file, "rb")
+            files = {"image": image_file}
         elif file_url and not file:
             provider_params["image_url"] = file_url
-            response = requests.post(url, data=provider_params, headers=self.headers)
         else:
             raise ProviderException("No file or file_url provided")
 
-        if response.status_code != 200:
-            try:
-                error_message = response.json()["error"]
-            except (KeyError, json.JSONDecodeError):
-                error_message = "Internal Server Error"
-            raise ProviderException(error_message, code=response.status_code)
+        bg_image = provider_params.pop("bg_image")
+        if bg_image:
+            bg_image = open(bg_image, "rb")
+            files["bg_image"] = bg_image
+
+        try:
+            response = requests.post(url, files=files, data=provider_params, headers=self.headers)
+        finally:
+            if image_file and not image_file.closed:
+                image_file.close()
+            if bg_image and not bg_image.closed:
+                bg_image.close()
+
+        self._handle_errors(response=response)
 
         result = response.json()
         image_url = result["data"]["url"]
@@ -67,3 +82,26 @@ class PicsartApi(ProviderInterface, ImageInterface):
                 image_resource_url=image_url,
             ),
         )
+
+    @staticmethod
+    def _handle_errors(response: requests.Response):
+        """
+        Handles the HTTP API Response.
+
+        :param response: The HTTP API response.
+        :raises: ProviderException
+        """
+        if response.status_code == 200:
+            return
+
+        error_message = "Internal Server Error"
+        error_code = response.status_code
+        if response.status_code == 400:
+            try:
+                response_details = response.json()
+                error_message = response_details.get("message", "Bad Request")
+                error_code = response_details.get("code", response.status_code)
+            except (KeyError, json.JSONDecodeError):
+                pass
+
+        raise ProviderException(error_message, code=error_code)
