@@ -23,7 +23,6 @@ class PicsartApi(ProviderInterface, ImageInterface):
         self.headers = {
             "X-Picsart-API-Key": self.api_settings["api_key"],
             "Accept": "application/json",
-            # "content-type": "multipart/form-data",
         }
 
 
