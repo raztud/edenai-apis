@@ -199,71 +199,72 @@
 </details>
 <details><summary>image</summary>
 
-| Subfeatures | Providers |
+| Subfeatures | Providers   |
 |----------|-------------|
-| **embeddings** | alephalpha |
-| | amazon |
-| | google |
-| **question_answer** | alephalpha |
-| | google |
-| | openai |
-| **explicit_content** | amazon |
-| | api4ai |
-| | clarifai |
-| | google |
-| | microsoft |
-| | openai |
-| | picpurify |
-| | sentisight |
-| **face_compare** | amazon |
-| | base64 |
-| | facepp |
-| **face_detection** | amazon |
-| | api4ai |
-| | clarifai |
-| | google |
-| | microsoft |
-| | picpurify |
+| **embeddings** | alephalpha  |
+| | amazon      |
+| | google      |
+| **question_answer** | alephalpha  |
+| | google      |
+| | openai      |
+| **explicit_content** | amazon      |
+| | api4ai      |
+| | clarifai    |
+| | google      |
+| | microsoft   |
+| | openai      |
+| | picpurify   |
+| | sentisight  |
+| **face_compare** | amazon      |
+| | base64      |
+| | facepp      |
+| **face_detection** | amazon      |
+| | api4ai      |
+| | clarifai    |
+| | google      |
+| | microsoft   |
+| | picpurify   |
 | | skybiometry |
-| **face_recognition** | amazon |
-| | facepp |
-| | microsoft |
-| **generation** | amazon |
-| | deepai |
-| | leonardo |
-| | openai |
-| | replicate |
+| **face_recognition** | amazon      |
+| | facepp      |
+| | microsoft   |
+| **generation** | amazon      |
+| | deepai      |
+| | leonardo    |
+| | openai      |
+| | replicate   |
 | | stabilityai |
-| **object_detection** | amazon |
-| | api4ai |
-| | clarifai |
-| | google |
-| | microsoft |
-| | sentisight |
-| **logo_detection** | anthropic |
-| | api4ai |
-| | clarifai |
-| | google |
-| | microsoft |
-| | openai |
-| | smartclick |
-| **anonymization** | api4ai |
-| **background_removal** | api4ai |
-| | clipdrop |
-| | microsoft |
-| | photoroom |
-| | sentisight |
+| **object_detection** | amazon      |
+| | api4ai      |
+| | clarifai    |
+| | google      |
+| | microsoft   |
+| | sentisight  |
+| **logo_detection** | anthropic   |
+| | api4ai      |
+| | clarifai    |
+| | google      |
+| | microsoft   |
+| | openai      |
+| | smartclick  |
+| **anonymization** | api4ai      |
+| **background_removal** | api4ai      |
+| | clipdrop    |
+| | microsoft   |
+| | photoroom   |
+| | picsart     |
+| | sentisight  |
 | | stabilityai |
-| **generation_fine_tuning** | astria |
-| **landmark_detection** | google |
-| | microsoft |
-| **automl_classification** | nyckel |
-| **search** | nyckel |
-| | sentisight |
-| **variation** | openai |
+| **generation_fine_tuning** | astria      |
+| **landmark_detection** | google      |
+| | microsoft   |
+| **automl_classification** | nyckel      |
+| **search** | nyckel      |
+| | sentisight  |
+| **variation** | openai      |
 | | stabilityai |
 | **deepfake_detection** | sightengine |
-| **ai_detection** | winstonai |
+| **ai_detection** | winstonai   |
 
 </details>
 <details><summary>audio</summary>
@@ -920,6 +921,15 @@
 |----------|-------------|
 | **image** | explicit_content |
 | | face_detection |
+
+</details>
+
+
+<details><summary>picsart</summary>
+
+| Features | Subfeatures |
+|----------|-------------|
+| **image** | background_removal |
 
 </details>
 <details><summary>privateai</summary>
